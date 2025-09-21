@@ -10,8 +10,8 @@
   <title>Video-to-BT</title>
   
   <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/robo_icon.png">
+  <link rel="apple-touch-icon" href="static/images/robo_icon.png">
   
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -57,8 +57,7 @@
             <!-- TODO: Replace with your paper title -->
             <h1 class="title is-1 publication-title">Video-to-BT: Generating Reactive Behavior Trees from Human Demonstration Videos for Robotic Assembly</h1>
             <div class="is-size-5 publication-authors">
-
-
+                Anonymous
                   <div class="column has-text-centered">
                 </a>
               </span>
@@ -78,11 +77,11 @@
       <!-- TODO: Replace with your teaser video -->
       <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
         <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
+        <source src="static/videos/Video2BT_video.mp4" type="video/mp4">
       </video>
       <!-- TODO: Replace with your video description -->
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        Video-to-BT presents a framework that enables robots to learn long-horizon assembly from video for robust execution in a dynamic world.
       </h2>
     </div>
   </div>
@@ -98,7 +97,7 @@
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Modern manufacturing demands robotic assembly systems with enhanced flexibility and reliability. However, traditional approaches often rely on programming tailored to each product by experts for fixed settings, which are inherently inflexible to product changes and lack the robustness to handle variations. As Behavior Trees (BTs) are increasingly used in robotics for their modularity and reactivity, we propose a novel hierarchical framework, Video-to-BT, that seamlessly integrates high-level cognitive planning with low-level reactive control, with BTs serving both as the structured output of planning and as the governing structure for execution. Our approach leverages a Vision-Language Model (VLM) to decompose human demonstration videos into subtasks, from which Behavior Trees are generated. During the execution, the planned BTs combined with real-time scene interpretation enable the system to operate reactively in the dynamic environment, while VLM-driven replanning is triggered upon execution failure. This closed-loop architecture ensures stability and adaptivity.  We validate our framework on real-world assembly tasks through a series of experiments, demonstrating high planning reliability, robust performance in long-horizon assembly tasks, and strong generalization across diverse and perturbed conditions.
           </p>
         </div>
       </div>
@@ -106,6 +105,25 @@
   </div>
 </section>
 <!-- End paper abstract -->
+
+<!-- Pipeline overview -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pipeline overview</h2>
+        <div class="hero-body">
+          <!-- Your image here -->
+          <img src="static/images/overview.pdf" alt="Second research result visualization" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Video-to-BT framework operates through the synergy of three core modules: Planning, Perception, and Execution.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End pipeline overview -->
 
 
 <!-- Image carousel -->
@@ -183,26 +201,23 @@
 </section>
 <!-- End video carousel -->
 
-
-
-
-
-
 <!-- Paper poster -->
+<!--
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <h2 class="title">Poster</h2>
-
+-->
       <!-- TODO: Replace with your poster PDF -->
+<!--
       <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
           </iframe>
         
       </div>
     </div>
   </section>
+-->
 <!--End paper poster -->
-
 
 
   <footer class="footer">
@@ -213,7 +228,7 @@
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
 
