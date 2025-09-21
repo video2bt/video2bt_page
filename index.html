@@ -55,7 +55,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Video-to-BT: Generating Reactive Behavior Trees from Human Demonstration Videos for Robotic Assembly</h1>
+            <h1 class="title is-3 publication-title">Video-to-BT: Generating Reactive Behavior Trees from Human Demonstration Videos for Robotic Assembly</h1>
             <div class="is-size-5 publication-authors">
                 Anonymous
                   <div class="column has-text-centered">
@@ -93,7 +93,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-4">Abstract</h2>
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
@@ -107,14 +107,14 @@
 <!-- End paper abstract -->
 
 <!-- Pipeline overview -->
-<section class="section hero is-light">
+<section class="hero is-small">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Pipeline overview</h2>
+        <h2 class="title is-4">Pipeline overview</h2>
         <div class="hero-body">
           <!-- Your image here -->
-          <img src="static/images/overview.pdf" alt="Second research result visualization" loading="lazy"/>
+          <img src="static/images/overview.svg" alt="Second research result visualization" loading="lazy"/>
           <h2 class="subtitle has-text-centered">
             Video-to-BT framework operates through the synergy of three core modules: Planning, Perception, and Execution.
           </h2>
@@ -125,36 +125,234 @@
 </section>
 <!-- End pipeline overview -->
 
+<!-- Demonstration videos gallery-->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <h2 class="title is-4 has-text-centered">Video Demonstrations</h2>
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <div class="video-container">
+            <video id="gallery-video" controls autoplay muted loop width="100%">
+              <source src="static/videos/en_0.mov" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
 
-<!-- Image carousel -->
+        <div class="column is-one-fifth">
+          <div class="field">
+            <label class="label">Select a Video:</label>
+            <div class="control">
+              <div class="select">
+                <select id="video-selector">
+                  <option value="0">English_1</option>
+                  <option value="1">English_2</option>
+                  <option value="2">English_3</option>
+                  <option value="3">German</option>
+                  <option value="4">Chinese_1</option>
+                  <option value="5">Chinese_2</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .video-container {
+    border: 1px solid #dbdbdb;
+    background-color: #000;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoElement = document.getElementById('gallery-video');
+    const videoSelector = document.getElementById('video-selector');
+    const videoSource = videoElement.getElementsByTagName('source')[0];
+
+    // Add your video paths here
+    const videoPaths = [
+      'static/videos/en_0.mov', // Corresponds to option value 0
+      'static/videos/en_1.mov', // Corresponds to option value 1
+      'static/videos/en_2.mov', // Corresponds to option value 2
+      'static/videos/de_0.mov', // Corresponds to option value 3
+      'static/videos/zh_0.mov',  // Corresponds to option value 4
+      'static/videos/zh_1.mov'
+    ];
+
+    // Handle video selection change
+    videoSelector.addEventListener('change', (event) => {
+      const selectedIndex = event.target.value;
+      if (videoPaths[selectedIndex]) {
+        // Change the video source
+        videoSource.setAttribute('src', videoPaths[selectedIndex]);
+        
+        // Load the new video and play it
+        videoElement.load();
+        videoElement.play();
+      }
+    });
+  });
+</script>
+
+<!-- End Demonstration videos gallery-->
+
+<!-- BT image gallery-->
 <section class="hero is-small">
   <div class="hero-body">
+    <h2 class="title is-4 has-text-centered">Behavior Tree Visualizations</h2>
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <div class="image-container" id="panzoom-container">
+            <img src="static/images/bt1.svg" alt="Behavior Tree Visualization" id="gallery-image">
+          </div>
+        </div>
+
+        <div class="column is-one-fifth">
+          <div class="field">
+            <label class="label">Select a Behavior Tree:</label>
+            <div class="control">
+              <div class="select">
+                <select id="image-selector">
+                  <option value="0">bt1</option>
+                  <option value="1">bt2</option>
+                  <option value="2">bt3</option>
+                  <option value="3">bt4</option>
+                  <option value="4">bt5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+
+<style>
+  .image-container {
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+    cursor: grab;
+    height: 500px; /* Or set a height that suits your layout */
+  }
+
+  #gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const imageElement = document.getElementById('gallery-image');
+    const panzoomContainer = document.getElementById('panzoom-container');
+    const imageSelector = document.getElementById('image-selector');
+
+    // Add your image paths here
+    const imagePaths = [
+      'static/images/bt1.svg', // Corresponds to option value 0
+      'static/images/bt2.svg', // Corresponds to option value 1
+      'static/images/bt3.svg', // Corresponds to option value 2
+      'static/images/bt4.svg', // Corresponds to option value 3
+      'static/images/bt5.svg'  // Corresponds to option value 4
+    ];
+
+    // Initialize Panzoom
+    let panzoom = Panzoom(imageElement, {
+      maxScale: 5,
+      minScale: 1
+    });
+
+    panzoomContainer.addEventListener('wheel', panzoom.zoomWithWheel);
+
+    // Handle image selection change
+    imageSelector.addEventListener('change', (event) => {
+      const selectedIndex = event.target.value;
+      if (imagePaths[selectedIndex]) {
+        // Change the image source
+        imageElement.src = imagePaths[selectedIndex];
+
+        // Reset the pan and zoom
+        panzoom.reset();
+      }
+    });
+  });
+</script>
+<!-- End BT image gallery-->
+
+<!-- Real world video-->
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered">Real World Demo</h2>
+    <div class="hero-body">
+      <!-- TODO: Replace with your teaser video -->
+      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
+        <!-- TODO: Add your video file path here -->
+        <source src="static/videos/exe_x6_vagued.mp4" type="video/mp4">
+      </video>
+      <!-- TODO: Replace with your video description -->
+      <h2 class="subtitle has-text-centered">
+      
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- Real world video2 -->
+
+<!-- Image carousel -->
+ <!--
+<section class="hero is-small">
+  <div class="hero-body">
+    <h2 class="title is-4 has-text-centered">Planning</h2>
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
+        -->
         <!-- TODO: Replace with your research result images -->
+
+        <!--
         <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
+        -->
         <!-- TODO: Replace with description of this result -->
+
+        <!--
         <h2 class="subtitle has-text-centered">
           First image description.
         </h2>
       </div>
       <div class="item">
+        -->
         <!-- Your image here -->
+
+        <!--
         <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
           Second image description.
         </h2>
       </div>
       <div class="item">
+
+        -->
         <!-- Your image here -->
+
+        <!--
         <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
          Third image description.
        </h2>
      </div>
      <div class="item">
+      -->
       <!-- Your image here -->
+      <!--
       <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
       <h2 class="subtitle has-text-centered">
         Fourth image description.
@@ -164,41 +362,55 @@
 </div>
 </div>
 </section>
+-->
 <!-- End image carousel -->
 
 
 
 <!-- Video carousel -->
+<!--
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">Another Carousel</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
+          -->
           <!-- TODO: Add poster image for better preview -->
+           <!--
           <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
+            -->
             <!-- Your video file here -->
+             <!--
             <source src="static/videos/carousel1.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
+          -->
           <!-- TODO: Add poster image for better preview -->
+           <!--
           <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
+            -->
             <!-- Your video file here -->
+             <!--
             <source src="static/videos/carousel2.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
+          -->
           <!-- TODO: Add poster image for better preview -->
+           <!--
           <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
+            -->
             <!-- Your video file here -->
+             <!--
             <source src="static/videos/carousel3.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End video carousel -->
 
 <!-- Paper poster -->
