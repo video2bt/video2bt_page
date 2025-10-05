@@ -6,24 +6,19 @@
 
 
 
-  <!-- TODO: Replace with your paper title and authors -->
   <title>Video-to-BT</title>
   
-  <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/robo_icon.png">
   <link rel="apple-touch-icon" href="static/images/robo_icon.png">
   
-  <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/index.css"> 
   
-  <!-- Non-critical CSS - Load asynchronously -->
   <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   
-  <!-- Fallback for browsers that don't support preload -->
   <noscript>
     <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
     <link rel="stylesheet" href="static/css/bulma-slider.min.css">
@@ -31,10 +26,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   </noscript>
   
-  <!-- Fonts - Optimized loading -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Defer non-critical JavaScript -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -43,18 +36,64 @@
   <script defer src="static/js/index.js"></script>
   
 
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
 
+  <style>
+    :root { --gap: 14px; }
+    
+    /* 保持 .box 和视频的样式，但移除背景和字体颜色覆盖，让其继承主页样式 */
+    .box { border: 1px solid #dbdbdb; /* 调整边框以适应浅色背景 */ }
+    
+    /* 视频样式: 确保宽度为 100% 并保持 16:9 比例 */
+    video { 
+      width: 100%; 
+      aspect-ratio: 16 / 9; /* 保持标准视频比例 */
+      background: #000; /* 视频未加载时的背景色 */
+      border-radius: 12px; 
+      border: 1px solid #dbdbdb; 
+    }
+    .columns.is-compact { --bulma-columnGap: var(--gap); }
+
+    /* 统一控制器布局 */
+    .unified-controls { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      margin-bottom: 20px; 
+    }
+
+    /* 进度条样式: 确保 flex-grow 占据所有剩余空间 */
+    #globalProgressBar { 
+      flex-grow: 1; 
+      margin: 0 5px; 
+      height: 8px; 
+      cursor: pointer; 
+      width: auto; 
+      min-width: 100px; 
+    }
+    .time-display { 
+      width: 55px; 
+      text-align: right; 
+      font-size: 0.9em; 
+      /* 继承或使用默认颜色 */
+      color: #777; 
+    }
+
+    /* 调整 Bulma 控件的样式以适应浅色背景 */
+    .button.is-primary { background:#4b8bff; border-color:#4b8bff; }
+    .is-muted-note { font-size: .85rem; color:#777; }
+  </style>
+
+</head>
+<body>
   <main id="main-content">
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
             <h1 class="title is-3 publication-title">Video-to-BT: Generating Reactive Behavior Trees from Human Demonstration Videos for Robotic Assembly</h1>
             <div class="is-size-5 publication-authors">
                 Anonymous
@@ -70,32 +109,24 @@
 </section>
 
 
-<!-- Teaser video-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
       <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
         <source src="static/videos/Video2BT_video.mp4" type="video/mp4">
       </video>
-      <!-- TODO: Replace with your video description -->
       <h2 class="subtitle has-text-centered">
         Video-to-BT presents a framework that enables robots to learn long-horizon assembly from video for robust execution in a dynamic world.
       </h2>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-4">Abstract</h2>
         <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
           <p>
             Modern manufacturing demands robotic assembly systems with enhanced flexibility and reliability. However, traditional approaches often rely on programming tailored to each product by experts for fixed settings, which are inherently inflexible to product changes and lack the robustness to handle variations. As Behavior Trees (BTs) are increasingly used in robotics for their modularity and reactivity, we propose a novel hierarchical framework, Video-to-BT, that seamlessly integrates high-level cognitive planning with low-level reactive control, with BTs serving both as the structured output of planning and as the governing structure for execution. Our approach leverages a Vision-Language Model (VLM) to decompose human demonstration videos into subtasks, from which Behavior Trees are generated. During the execution, the planned BTs combined with real-time scene interpretation enable the system to operate reactively in the dynamic environment, while VLM-driven replanning is triggered upon execution failure. This closed-loop architecture ensures stability and adaptivity.  We validate our framework on real-world assembly tasks through a series of experiments, demonstrating high planning reliability, robust performance in long-horizon assembly tasks, and strong generalization across diverse and perturbed conditions.
           </p>
@@ -104,16 +135,12 @@
     </div>
   </div>
 </section>
-<!-- End paper abstract -->
-
-<!-- Pipeline overview -->
 <section class="hero is-small">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-4">Pipeline overview</h2>
         <div class="hero-body">
-          <!-- Your image here -->
           <img src="static/images/overview.svg" alt="Second research result visualization" loading="lazy"/>
           <h2 class="subtitle has-text-centered">
             Video-to-BT framework operates through the synergy of three core modules: Planning, Perception, and Execution.
@@ -123,9 +150,6 @@
     </div>
   </div>
 </section>
-<!-- End pipeline overview -->
-
-<!-- Demonstration videos gallery-->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <h2 class="title is-4 has-text-centered">Video Demonstrations</h2>
@@ -134,7 +158,7 @@
         <div class="column is-three-fifths">
           <div class="video-container">
             <video id="gallery-video" controls autoplay muted loop width="100%">
-              <source src="static/videos/en_0.mov" type="video/mp4">
+              <source src="static/videos/en_0.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -176,12 +200,12 @@
 
     // Add your video paths here
     const videoPaths = [
-      'static/videos/en_0.mov', // Corresponds to option value 0
-      'static/videos/en_1.mov', // Corresponds to option value 1
-      'static/videos/en_2.mov', // Corresponds to option value 2
-      'static/videos/de_0.mov', // Corresponds to option value 3
-      'static/videos/zh_0.mov',  // Corresponds to option value 4
-      'static/videos/zh_1.mov'
+      'static/videos/en_0.mp4', // Corresponds to option value 0
+      'static/videos/en_1.mp4', // Corresponds to option value 1
+      'static/videos/en_2.mp4', // Corresponds to option value 2
+      'static/videos/de_0.mp4', // Corresponds to option value 3
+      'static/videos/zh_0.mp4',  // Corresponds to option value 4
+      'static/videos/zh_1.mp4'
     ];
 
     // Handle video selection change
@@ -199,9 +223,6 @@
   });
 </script>
 
-<!-- End Demonstration videos gallery-->
-
-<!-- BT image gallery-->
 <section class="hero is-small">
   <div class="hero-body">
     <h2 class="title is-4 has-text-centered">Behavior Tree Visualizations</h2>
@@ -286,151 +307,306 @@
     });
   });
 </script>
-<!-- End BT image gallery-->
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-4">Real World Demo</h2>
 
-<!-- Real world video-->
-<section class="hero teaser is-light">
-  <div class="container is-max-desktop">
-    <h2 class="title is-4 has-text-centered">Real World Demo</h2>
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/exe_x6_vagued.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-      
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- Real world video2 -->
-
-<!-- Image carousel -->
- <!--
-<section class="hero is-small">
-  <div class="hero-body">
-    <h2 class="title is-4 has-text-centered">Planning</h2>
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        -->
-        <!-- TODO: Replace with your research result images -->
-
-        <!--
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        -->
-        <!-- TODO: Replace with description of this result -->
-
-        <!--
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        -->
-        <!-- Your image here -->
-
-        <!--
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-
-        -->
-        <!-- Your image here -->
-
-        <!--
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      -->
-      <!-- Your image here -->
-      <!--
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
--->
-<!-- End image carousel -->
-
-
-
-<!-- Video carousel -->
-<!--
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          -->
-          <!-- TODO: Add poster image for better preview -->
-           <!--
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            -->
-            <!-- Your video file here -->
-             <!--
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          -->
-          <!-- TODO: Add poster image for better preview -->
-           <!--
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            -->
-            <!-- Your video file here -->
-             <!--
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          -->
-          <!-- TODO: Add poster image for better preview -->
-           <!--
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            -->
-            <!-- Your video file here -->
-             <!--
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- End video carousel -->
-
-<!-- Paper poster -->
-<!--
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
--->
-      <!-- TODO: Replace with your poster PDF -->
-<!--
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
+      <div class="box">
         
+        <div class="unified-controls">
+            <button id="playPauseBtn" class="button is-primary is-medium">Play</button>
+
+            <span id="currentTimeDisplay" class="time-display">00:00</span>
+            
+            <input type="range" id="globalProgressBar" min="0" max="100" value="0" step="0.1">
+            
+            <span id="durationDisplay" class="time-display">--:--</span>
+        </div>
+        
+        <div class="columns is-compact">
+          <div class="column">
+            <div class="field">
+              <label class="label" for="sel1">Window 1 Source</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="sel1"></select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label" for="sel2">Window 2 Source</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="sel2"></select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-compact">
+          <div class="column">
+            <video id="v1" playsinline muted preload="metadata"></video> 
+          </div>
+          <div class="column">
+            <video id="v2" playsinline muted preload="metadata"></video>
+          </div>
+        </div>
       </div>
+
+      <p class="is-muted-note">视频播放速度锁定在 1.0×。</p>
     </div>
   </section>
--->
-<!--End paper poster -->
 
+  <script>
+    // 确保这里的路径和标签与你的视频文件对应
+    const SOURCES = [
+      { label: "High Angle Camera View", src: "static/videos/high_view.mp4" },
+      { label: "Low Angle Camera View", src: "static/videos/low_view.mp4" },
+      { label: "Web Interface: Tracking", src: "static/videos/track.mp4" },
+      { label: "Web Interface: BT Executor", src: "static/videos/bt_main.mp4" },
+    ];
+
+    const v1 = document.getElementById('v1');
+    const v2 = document.getElementById('v2');
+    const sel1 = document.getElementById('sel1');
+    const sel2 = document.getElementById('sel2');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+
+    const globalProgressBar = document.getElementById('globalProgressBar');
+    const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+    const durationDisplay = document.getElementById('durationDisplay');
+
+    // ===== Global timeline state =====
+    let isPlaying = false;
+    let baseOffset = 0; 
+    let globalStartEpoch = 0; 
+    
+    const allVideoDurations = new Map(); 
+    let minDuration = Infinity; 
+    
+    let isScrubbing = false; 
+
+    // Per-video state for sync logic
+    const progSeekCount = new WeakMap([[v1,0],[v2,0]]);
+    const loadingVideos = new Set();
+    let isSyncLocked = false; 
+
+    function inc(map, el) { map.set(el, (map.get(el)||0) + 1); }
+    function dec(map, el) { map.set(el, Math.max(0,(map.get(el)||0) - 1)); }
+    
+    const nowSec = () => performance.now() / 1000;
+    const currentGlobalTime = () => (isPlaying ? (nowSec() - globalStartEpoch) : baseOffset);
+
+    function formatTime(seconds) {
+        if (!isFinite(seconds) || seconds < 0) return "--:--";
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    /**
+     * 设置新的全局时间，并立即同步所有视频。
+     */
+    function setGlobalTime(t) {
+      if (isSyncLocked) return; 
+
+      baseOffset = Math.min(Math.max(0, t), minDuration); 
+      if (isPlaying) globalStartEpoch = nowSec() - baseOffset;
+      
+      syncAllVideosToGlobalTime();
+    }
+
+    function alignVideoToGlobalTime(videoEl, isForce = false) {
+      if (loadingVideos.has(videoEl)) return;
+      
+      const t = currentGlobalTime();
+      const dur = Number.isFinite(videoEl.duration) ? videoEl.duration : Infinity;
+      if (!isFinite(dur) || dur === 0) return;
+      
+      const maxT = Math.min(minDuration, dur) - 0.05;
+      const safeT = Math.min(Math.max(0, t), maxT);
+      const err = Math.abs((videoEl.currentTime||0) - safeT);
+      
+      if (isForce || err > 0.35 || safeT === maxT) {
+        isSyncLocked = true; 
+        inc(progSeekCount, videoEl);
+        
+        try { videoEl.currentTime = safeT; } catch(e) {}
+        
+        isSyncLocked = false; 
+
+        // 播放结束时的自动暂停
+        if (safeT === maxT && t >= maxT) {
+             onPause();
+             baseOffset = minDuration; 
+             globalProgressBar.value = minDuration;
+             currentTimeDisplay.textContent = formatTime(minDuration);
+        }
+      }
+    }
+
+    function syncAllVideosToGlobalTime(){ 
+        [v1, v2].forEach(v => alignVideoToGlobalTime(v, true)); 
+    }
+
+    function tryPlayWhenReady(videoEl){
+      alignVideoToGlobalTime(videoEl, true); 
+      
+      const go = ()=> videoEl.play().catch(()=>{});
+      if (videoEl.readyState >= 2) go(); else videoEl.addEventListener('canplay', go, {once:true});
+    }
+
+    function onPlay(){
+      if (baseOffset >= minDuration) {
+          baseOffset = 0;
+      }
+
+      if (isPlaying) return;
+      isPlaying = true;
+      globalStartEpoch = nowSec() - baseOffset;
+      playPauseBtn.textContent = 'Pause';
+      
+      syncAllVideosToGlobalTime(); 
+      [v1,v2].forEach(v=>{ if (!loadingVideos.has(v)) tryPlayWhenReady(v); });
+    }
+
+    function onPause(){
+      if (!isPlaying) return;
+      isPlaying = false;
+      
+      const t1 = v1.currentTime || 0;
+      const t2 = v2.currentTime || 0;
+      baseOffset = Math.min(Math.max(t1, t2), minDuration); 
+      
+      playPauseBtn.textContent = 'Play';
+      [v1,v2].forEach(v=>v.pause());
+    }
+    
+    // 每 50ms 更新一次时间线和进度条
+    setInterval(()=>{ 
+        const currentTime = currentGlobalTime();
+
+        if (isPlaying) {
+            [v1,v2].forEach(v => alignVideoToGlobalTime(v)); 
+        }
+
+        if (!isScrubbing) {
+            globalProgressBar.value = currentTime;
+            currentTimeDisplay.textContent = formatTime(currentTime);
+        }
+    }, 50);
+
+    // ===== Loading & switching sources =====
+    function updateMinDuration() {
+        minDuration = Infinity;
+        allVideoDurations.forEach(dur => {
+            if (isFinite(dur)) minDuration = Math.min(minDuration, dur);
+        });
+        
+        if (minDuration === Infinity) minDuration = 0;
+
+        globalProgressBar.max = minDuration;
+        durationDisplay.textContent = formatTime(minDuration);
+        
+        if (baseOffset > minDuration) {
+            setGlobalTime(0); 
+        }
+    }
+
+    function loadVideo(videoEl, src, sourceIndex){
+      loadingVideos.add(videoEl);
+      videoEl.src = src;
+      videoEl.load();
+
+      const onMeta = () => {
+        videoEl.removeEventListener('loadedmetadata', onMeta);
+        
+        allVideoDurations.set(videoEl, videoEl.duration);
+        updateMinDuration(); 
+
+        // 播放速率锁定为 1.0
+        videoEl.playbackRate = 1.0; 
+        
+        alignVideoToGlobalTime(videoEl, true);
+        if (isPlaying) tryPlayWhenReady(videoEl);
+        loadingVideos.delete(videoEl);
+      };
+      videoEl.addEventListener('loadedmetadata', onMeta, {once:true});
+    }
+
+    // ===== Wire UI =====
+    playPauseBtn.addEventListener('click', ()=>{ isPlaying ? onPause() : onPlay(); });
+
+    function populateSelect(sel){
+      SOURCES.forEach((s,i)=>{
+        const o=document.createElement('option'); o.value=String(i); o.textContent=s.label; sel.appendChild(o);
+      });
+    }
+
+    sel1.addEventListener('change', ()=>{ 
+        const i=+sel1.value; 
+        loadVideo(v1, SOURCES[i].src, i); 
+    });
+    sel2.addEventListener('change', ()=>{ 
+        const i=+sel2.value; 
+        loadVideo(v2, SOURCES[i].src, i); 
+    });
+
+    // 全局进度条事件处理
+    globalProgressBar.addEventListener('mousedown', () => { isScrubbing = true; onPause(); });
+    globalProgressBar.addEventListener('touchstart', () => { isScrubbing = true; onPause(); });
+    
+    const handleScrubEnd = () => {
+        if (!isScrubbing) return;
+        isScrubbing = false;
+        setGlobalTime(parseFloat(globalProgressBar.value));
+        onPlay(); 
+    };
+
+    globalProgressBar.addEventListener('mouseup', handleScrubEnd);
+    globalProgressBar.addEventListener('touchend', handleScrubEnd);
+    globalProgressBar.addEventListener('click', handleScrubEnd); 
+
+    globalProgressBar.addEventListener('input', () => {
+        const t = parseFloat(globalProgressBar.value);
+        currentTimeDisplay.textContent = formatTime(t);
+        [v1, v2].forEach(v => {
+            if (!loadingVideos.has(v) && v.readyState >= 2) v.currentTime = t;
+        });
+    });
+
+    // 仅保留 seeked 事件处理的残余逻辑 (防止 nudge 逻辑出错)
+    function wireVideo(videoEl){
+      videoEl.addEventListener('seeked', ()=>{
+        const pc = progSeekCount.get(videoEl)||0;
+        if (pc > 0) dec(progSeekCount, videoEl); 
+      });
+      
+      const nudge=()=>{
+        if (!isPlaying || loadingVideos.has(videoEl)) return;
+        const t=Math.max(0,(videoEl.currentTime||0)-0.2); 
+        inc(progSeekCount, videoEl);
+        try{ videoEl.currentTime=t; }catch(e){}
+        tryPlayWhenReady(videoEl);
+      };
+      videoEl.addEventListener('waiting', nudge);
+      videoEl.addEventListener('stalled', nudge);
+    }
+
+    [v1,v2].forEach(wireVideo);
+
+    // ===== Init =====
+    populateSelect(sel1); populateSelect(sel2);
+    sel1.value = '0'; sel2.value = '1';
+    loadVideo(v1, SOURCES[0].src, 0);
+    loadVideo(v2, SOURCES[1].src, 1);
+    
+    setGlobalTime(0);
+
+  </script>
 
   <footer class="footer">
   <div class="container">
@@ -450,11 +626,5 @@
   </div>
 </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
+</body>
   </html>
